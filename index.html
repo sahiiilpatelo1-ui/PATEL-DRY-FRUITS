@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#173f2b">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>PATEL DRY FRUITS</title>
+<style>
+:root{--green:#173f2b;--green2:#24583d;--gold:#d8ad58;--cream:#fff9ed;--ink:#24291f;--muted:#6d746b;--line:#e8e1d4}
+*{box-sizing:border-box}body{margin:0;background:#f5f2e9;color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,sans-serif}
+header{background:linear-gradient(135deg,#123522,#286144);color:#fff;padding:22px 16px 26px;border-radius:0 0 24px 24px}
+.top{max-width:1050px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{display:flex;align-items:center;gap:12px}.logo{width:48px;height:48px;border-radius:15px;background:var(--gold);color:#173f2b;display:grid;place-items:center;font-size:25px;font-weight:900}.brand h1{font-size:20px;margin:0;letter-spacing:.5px}.brand p{margin:4px 0 0;font-size:12px;color:#e5efdf}.pill{border:1px solid #ffffff66;border-radius:999px;padding:8px 11px;font-size:12px;white-space:nowrap}
+.hero{max-width:1050px;margin:24px auto 0}.hero h2{font-size:clamp(25px,5vw,38px);line-height:1.13;margin:0 0 10px;max-width:600px}.hero p{margin:0;color:#e1ecdf;max-width:560px;line-height:1.5}
+main{max-width:1050px;margin:0 auto;padding:18px 14px 50px}.notice{background:#fff;border:1px solid var(--line);padding:12px 14px;border-radius:14px;font-size:13px;color:#52584e;margin-bottom:16px}
+.controls{display:flex;gap:9px;flex-wrap:wrap;margin:16px 0}.search{flex:1;min-width:180px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;font:inherit;background:#fff}.tab{border:1px solid var(--line);border-radius:12px;padding:10px 13px;background:#fff;color:var(--green);font-weight:700;cursor:pointer}.tab.active{background:var(--green);color:white;border-color:var(--green)}
+.section-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:20px 0 12px}.section-title h3{margin:0;font-size:21px}.section-title span{font-size:12px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;display:flex;flex-direction:column;min-width:0;box-shadow:0 3px 12px #342b1010}.emoji{height:68px;border-radius:12px;background:#f7f2e5;display:grid;place-items:center;font-size:37px;margin-bottom:10px}.card h4{font-size:15px;margin:0 0 3px}.sub{font-size:12px;color:var(--muted);margin-bottom:10px}.card-bottom{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:auto}.price{font-weight:800;color:var(--green);font-size:14px}.price small{display:block;color:var(--muted);font-weight:500;font-size:10px}.add{border:0;background:var(--green);color:white;border-radius:10px;padding:9px 11px;font-weight:700;cursor:pointer}.admin-price{width:100%;border:1px solid var(--line);border-radius:9px;padding:8px;margin:0 0 9px;font:inherit;font-size:13px}.bottom-panel{margin-top:24px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}.bottom-panel h3{margin:0 0 12px}.cart-row{display:flex;justify-content:space-between;gap:8px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}.cart-row button{border:0;background:#f6e8dc;color:#713d25;border-radius:7px;padding:4px 8px}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.primary,.secondary{padding:12px 15px;border:0;border-radius:12px;font:inherit;font-weight:800;cursor:pointer}.primary{background:var(--green);color:white}.secondary{background:#e7efe7;color:var(--green)}.empty{color:var(--muted);font-size:14px}.admin{margin-top:18px}.admin summary{cursor:pointer;font-weight:800;color:var(--green);padding:4px 0}.admin p{font-size:13px;color:var(--muted);line-height:1.5}.admin-tools{display:flex;gap:8px;flex-wrap:wrap}.foot{padding:20px 12px;background:#123522;color:#e9f1e8;text-align:center;font-size:12px;line-height:1.7}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#172c20;color:white;padding:11px 16px;border-radius:12px;display:none;z-index:5;box-shadow:0 4px 20px #0003}
+@media(min-width:650px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{padding:0 3px}main{padding-left:20px;padding-right:20px}}
+@media(min-width:900px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<header>
+ <div class="top"><div class="brand"><div class="logo">P</div><div><h1>PATEL DRY FRUITS</h1><p>Dry Fruits • Nuts • Garam Masala</p></div></div><div style="display:flex;gap:8px;align-items:center"><button class="pill" id="installApp" style="background:transparent;color:white;cursor:pointer;display:none">📲 Install App</button><div class="pill">🛒 Cart: <b id="cartCount">0</b></div></div></div>
+ <div class="hero"><h2>Achhi quality, ab aapke ghar tak.</h2><p>Dry fruits aur masalon ki apni dukaan. Apna item chunein, rate dekhein aur aasani se order bhejein.</p></div>
+</header>
+<main>
+ <div class="notice">📍 Masum Wadi, Juna Meherun Road, Jalgaon<br>📞 9960754341</div>
+ <div class="controls"><input id="search" class="search" placeholder="Item search karein…" aria-label="Search items"><button class="tab active" data-cat="all">Sabhi</button><button class="tab" data-cat="dry">Dry Fruits</button><button class="tab" data-cat="spice">Garam Masale</button></div>
+ <div class="section-title"><h3>Hamare Products</h3><span id="itemCount"></span></div>
+ <div id="products" class="grid"></div>
+ <section class="bottom-panel" id="cart">
+  <h3>🛒 Aapka Cart</h3><div id="cartItems" class="empty">Abhi cart khaali hai. Pehle koi item add karein.</div>
+  <div id="cartTotal" style="font-weight:800;margin-top:12px"></div>
+  <div style="margin-top:14px"><label for="customerName">Aapka naam</label><input id="customerName" class="search" style="width:100%;margin-top:6px" placeholder="Naam likhein"><label for="customerAddress" style="display:block;margin-top:10px">Delivery address / area</label><input id="customerAddress" class="search" style="width:100%;margin-top:6px" placeholder="Address likhein"></div>
+  <div class="actions"><button class="primary" id="whatsappOrder">WhatsApp par order karein</button><button class="secondary" id="clearCart">Cart saaf karein</button></div>
+ </section>
+ <details class="bottom-panel admin">
+  <summary>⚙️ Shop Admin — apne rate yahan set karein</summary>
+  <p>Har item ka rate ₹ per kg mein likhein. Rate is device ke browser mein save hoga. Ye demo admin panel password-protected nahi hai; online launch se pehle secure admin login aur shared database lagana hoga.</p>
+  <div class="admin-tools"><button class="secondary" id="saveRates">Rate save karein</button><button class="secondary" id="exportRates">Rate list download karein</button></div>
+  <div id="rateEditor" style="margin-top:12px"></div>
+ </details>
+</main>
+<footer class="foot"><b>PATEL DRY FRUITS</b><br>Masum Wadi, Juna Meherun Road, Jalgaon<br>9960754341 • <br>© PATEL DRY FRUITS</footer>
+<div class="toast" id="toast"></div>
+<script>
+const baseProducts = [
+["badam","बादाम","Almonds","dry","🥜"],["kaju","काजू","Cashews","dry","🥜"],["pista","पिस्ता","Pistachios","dry","🟢"],["kishmish","किशमिश","Raisins","dry","🍇"],["akhrot","अखरोट","Walnuts","dry","🌰"],["anjeer","अंजीर","Figs","dry","🟤"],["khajoor","खजूर","Dates","dry","🌴"],["makhana","मखाना","Fox Nuts","dry","⚪"],["chuhara","छुहारा","Dry Dates","dry","🌴"],["moongfali","मूंगफली","Peanuts","dry","🥜"],["mixdry","मिक्स ड्राई फ्रूट्स","Mixed Dry Fruits","dry","🥣"],
+["garam","गरम मसाला","Garam Masala","spice","🌶️"],["kali","काली मिर्च","Black Pepper","spice","⚫"],["elaichi","इलायची","Cardamom","spice","🟢"],["laung","लौंग","Cloves","spice","🌿"],["dalchini","दालचीनी","Cinnamon","spice","🪵"],["tejpatta","तेजपत्ता","Bay Leaves","spice","🍃"],["jeera","जीरा","Cumin","spice","🌾"],["dhaniya","धनिया पाउडर","Coriander Powder","spice","🌿"],["haldi","हल्दी पाउडर","Turmeric Powder","spice","🟡"],["mirchi","लाल मिर्च पाउडर","Red Chilli Powder","spice","🌶️"],["saunf","सौंफ","Fennel Seeds","spice","🌱"],["jaiphal","जायफल","Nutmeg","spice","🟤"],["javitri","जावित्री","Mace","spice","🌸"]
+];
+let rates = JSON.parse(localStorage.getItem("patelRates")||"null") || {badam:1200,kaju:1200,pista:2000,kishmish:600};
+let cart = JSON.parse(localStorage.getItem("patelCart")||"[]");
+let category="all";
+const money=n=>"₹"+Number(n).toLocaleString("en-IN",{maximumFractionDigits:2});
+function price(id){return Number(rates[id]||0)}
+function showToast(s){const t=document.getElementById("toast");t.textContent=s;t.style.display="block";setTimeout(()=>t.style.display="none",2200)}
+function renderProducts(){
+ const q=document.getElementById("search").value.toLowerCase();
+ const list=baseProducts.filter(p=>(category==="all"||p[3]===category)&&(`${p[1]} ${p[2]}`.toLowerCase().includes(q)));
+ document.getElementById("itemCount").textContent=list.length+" items";
+ document.getElementById("products").innerHTML=list.map(p=>`<article class="card"><div class="emoji">${p[4]}</div><h4>${p[1]}</h4><div class="sub">${p[2]}</div><div class="card-bottom"><div class="price">${price(p[0])?money(price(p[0]))+'<small>per kg</small>':'Rate not set'}</div><button class="add" onclick="addCart('${p[0]}')">+ Add</button></div></article>`).join("");
+}
+function renderRates(){document.getElementById("rateEditor").innerHTML=baseProducts.map(p=>`<label style="display:block;font-size:13px;margin:10px 0 4px">${p[1]} (${p[2]}) — ₹/kg</label><input class="admin-price" type="number" min="0" step="0.01" id="rate-${p[0]}" placeholder="Apna rate daalein" value="${rates[p[0]]||''}">`).join("")}
+function saveRates(){baseProducts.forEach(p=>{let v=document.getElementById("rate-"+p[0]).value;if(v!==""&&Number(v)>=0)rates[p[0]]=Number(v);else delete rates[p[0]]});localStorage.setItem("patelRates",JSON.stringify(rates));renderProducts();renderCart();showToast("Aapke rates save ho gaye")}
+function addCart(id){if(!price(id)){showToast("Pehle Admin mein is item ka rate daalein");document.querySelector(".admin").open=true;return}const p=baseProducts.find(x=>x[0]===id);let found=cart.find(x=>x.id===id&&x.grams===250);if(found)found.qty++;else cart.push({id,grams:250,qty:1});localStorage.setItem("patelCart",JSON.stringify(cart));renderCart();showToast(p[1]+" cart mein add hua")}
+function removeCart(i){cart.splice(i,1);localStorage.setItem("patelCart",JSON.stringify(cart));renderCart()}
+function renderCart(){document.getElementById("cartCount").textContent=cart.reduce((s,x)=>s+x.qty,0);const el=document.getElementById("cartItems");if(!cart.length){el.className="empty";el.textContent="Abhi cart khaali hai. Pehle koi item add karein.";document.getElementById("cartTotal").textContent="";return}el.className="";el.innerHTML=cart.map((x,i)=>{const p=baseProducts.find(y=>y[0]===x.id);return `<div class="cart-row"><div><b>${p[1]}</b><br><select onchange="changeWeight(${i},this.value)" aria-label="Pack size">${[250,500,1000].map(g=>`<option value="${g}" ${x.grams===g?'selected':''}>${g===1000?'1 kg':g+' g'}</option>`).join("")}</select> × <button onclick="changeQty(${i},-1)">−</button> ${x.qty} <button onclick="changeQty(${i},1)">+</button></div><div style="text-align:right"><b>${money(price(x.id)*x.grams/1000*x.qty)}</b><br><button onclick="removeCart(${i})">Remove</button></div></div>`}).join("");document.getElementById("cartTotal").textContent="Total: "+money(cart.reduce((s,x)=>s+price(x.id)*x.grams/1000*x.qty,0))}
+function changeWeight(i,g){cart[i].grams=Number(g);localStorage.setItem("patelCart",JSON.stringify(cart));renderCart()}
+function changeQty(i,d){cart[i].qty+=d;if(cart[i].qty<=0)cart.splice(i,1);localStorage.setItem("patelCart",JSON.stringify(cart));renderCart()}
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");category=b.dataset.cat;renderProducts()}));
+document.getElementById("search").addEventListener("input",renderProducts);
+document.getElementById("saveRates").addEventListener("click",saveRates);
+document.getElementById("clearCart").addEventListener("click",()=>{cart=[];localStorage.setItem("patelCart","[]");renderCart()});
+document.getElementById("whatsappOrder").addEventListener("click",()=>{if(!cart.length){showToast("Pehle cart mein item add karein");return}const name=document.getElementById("customerName").value.trim(),addr=document.getElementById("customerAddress").value.trim();if(!name||!addr){showToast("Naam aur delivery address likhein");return}let lines=cart.map(x=>{let p=baseProducts.find(y=>y[0]===x.id);return `${p[1]} - ${x.grams===1000?'1 kg':x.grams+' g'} x ${x.qty} = ${money(price(x.id)*x.grams/1000*x.qty)}`});let total=cart.reduce((s,x)=>s+price(x.id)*x.grams/1000*x.qty,0);let msg=`*PATEL DRY FRUITS - Order*%0AName: ${encodeURIComponent(name)}%0AAddress: ${encodeURIComponent(addr)}%0A${encodeURIComponent(lines.join("\n"))}%0A*Total: ${encodeURIComponent(money(total))}*`;window.open("https://wa.me/919960754341?text="+msg,"_blank")});
+document.getElementById("exportRates").addEventListener("click",()=>{const blob=new Blob([JSON.stringify(rates,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="patel-dry-fruits-rates.json";a.click();URL.revokeObjectURL(a.href)});
+renderProducts();renderRates();renderCart();
+// PWA installation support: requires HTTPS hosting and compatible Android browser.
+let installPrompt=null;
+const installButton=document.getElementById("installApp");
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();installPrompt=e;installButton.style.display="block"});
+installButton.addEventListener("click",async()=>{if(!installPrompt){showToast("Install ke liye app ko HTTPS hosting par publish karna hoga");return}installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;installButton.style.display="none"});
+if("serviceWorker" in navigator && location.protocol.startsWith("http")){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}))}
+</script>
+</body></html>
